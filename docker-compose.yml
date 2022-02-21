@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     ports:
       - "9000:9000"
-      - "9001:9001"
+      - "${S3_DASHBOARD_PORT}:9001"
     environment:
       - MINIO_ROOT_USER=${AWS_ACCESS_KEY_ID}
       - MINIO_ROOT_PASSWORD=${AWS_SECRET_ACCESS_KEY}
@@ -38,7 +38,7 @@ services:
       context: ./mlflow
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "${MLFLOW_DASHBOARD_PORT}:5000"
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
